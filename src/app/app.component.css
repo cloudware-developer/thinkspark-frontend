@@ -1,0 +1,10 @@
+.disabled > a {
+    display: inline-block;  
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+.btn-actions
+{
+  margin-right: 10px;
+}

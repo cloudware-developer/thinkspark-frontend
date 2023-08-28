@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let item of model.collection">
+                <td>{{item.contatoId}}</td>
+                <td>{{item.descricao}}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr *ngIf="model.collection.length <= 0">
+                <td colspan="2">Nenhum registro encontrado.</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li [ngClass]="model.firstPageUrl == '' || model.previousPageUrl == ''  ? 'disabled' : 'waves-effect' ">
+            <a (click)="paginacao(model.currentPage-1, model.itemsPerPage, data.pessoaId)">Voltar</a>
+        </li>
+        <li *ngFor="let i of model.totalPages | enumerate;" [ngClass]="model.currentPage == i+1 ? 'active' : '' ">
+            <a href="#" (click)="paginacao(i+1, model.itemsPerPage, data.pessoaId)">{{i+1}}</a>
+        </li>
+        <li class="waves-effect" [ngClass]="model.nextPageUrl == '' || model.lastPageUrl == '' ? 'disabled' : 'waves-effect' ">
+            <a (click)="paginacao(model.currentPage+1, model.itemsPerPage, data.pessoaId)">Avançar</a>
+        </li>
+    </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <a class="waves-effect waves-light btn modal-trigger btn-actions" (click)="onClose()">Fechar</a>
+</mat-dialog-actions>

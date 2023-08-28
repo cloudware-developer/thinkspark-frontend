@@ -1,0 +1,41 @@
+<h2>Listagem de Pessoas e Contatos</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of model.collection">
+            <td>{{item.pessoaId}}</td>
+            <td>{{item.nome}}</td>
+            <td>
+                <a class="waves-effect waves-light btn modal-trigger btn-actions"
+                    (click)="openModalContatos(item.pessoaId, item.nome!)">Ver Contatos</a>
+                <a class="waves-effect waves-light btn modal-trigger btn-actions"
+                    (click)="openModalAdicionar(item.pessoaId)">Adicionar Contato</a>
+                <a class="waves-effect waves-light btn modal-trigger btn-actions"
+                    (click)="apagarContatos(item.pessoaId)">Apagar Contatos</a>
+            </td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr *ngIf="model.collection.length <= 0">
+            <td colspan="3">Nenhum registro encontrado.</td>
+        </tr>
+    </tbody>
+</table>
+<ul class="pagination">
+    <li [ngClass]="model.firstPageUrl == '' || model.previousPageUrl == ''  ? 'disabled' : 'waves-effect' ">
+        <a (click)="paginacao(model.currentPage-1, model.itemsPerPage)">Voltar</a>
+    </li>
+    <li *ngFor="let i of model.totalPages | enumerate;" [ngClass]="model.currentPage == i+1 ? 'active' : '' ">
+        <a href="#" (click)="paginacao(i+1, model.itemsPerPage)">{{i+1}}</a>
+    </li>
+    <li class="waves-effect"
+        [ngClass]="model.nextPageUrl == '' || model.lastPageUrl == '' ? 'disabled' : 'waves-effect' ">
+        <a (click)="paginacao(model.currentPage+1, model.itemsPerPage)">Avançar</a>
+    </li>
+</ul>

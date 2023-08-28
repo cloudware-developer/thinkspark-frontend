@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>
+  <div class="row">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="col s12" novalidate="novalidate" autocomplete="off">
+      <div class="row">
+        <div class="input-field col s5">
+          <label for="tipoContatoId" class="active">Tipo de Contato (1 - Email, 2 - Celular)</label>
+          <input maxlength="1" formControlName="tipoContatoId" id="tipoContatoId" type="number" min="1" max="2"
+            onkeydown="return false" class="validate">
+        </div>
+        <div class="input-field col s5">
+          <label for="descricao" class="active">Descrição do Contato</label>
+          <input maxlength="50" formControlName="descricao" id="descricao" type="text" class="validate">
+        </div>
+        <div class="input-field col s2">
+          <button type="submit" class="waves-effect waves-light btn modal-trigger btn-actions">Salvar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <a class="waves-effect waves-light btn modal-trigger btn-actions" (click)="onClose()">Fechar</a>
+</mat-dialog-actions>
